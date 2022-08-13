@@ -26,11 +26,15 @@ namespace FirstAPP
         public MainWindow()
         {
             this.InitializeComponent();
+            Window window = this;
+            window.ExtendsContentIntoTitleBar = true;
+            window.SetTitleBar(default);  // this line is optional as by it is null by default
         }
 
         private void myButton_Click(object sender, RoutedEventArgs e)
         {
-            myButton.Content = "Clicked";
+            string ButtonText = "Clicked";
+            myButton.Content = ButtonText;
         }
     }
 }
