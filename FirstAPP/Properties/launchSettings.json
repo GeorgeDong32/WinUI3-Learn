@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "FirstAPP (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "FirstAPP (Unpackaged)": {
+      "commandName": "Project"
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    }
+  }
+}
