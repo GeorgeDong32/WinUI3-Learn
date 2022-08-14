@@ -16,6 +16,9 @@ namespace SimplePhotos;
 /// </summary>
 public sealed partial class MainWindow : Window
 {
+    public ObservableCollection<ImageFileInfo> Images{ get; } =
+        new ObservableCollection<ImageFileInfo>();
+
     public MainWindow()
     {
         this.InitializeComponent();
@@ -46,7 +49,5 @@ public sealed partial class MainWindow : Window
 
         return info;
     }
-
-    public ObservableCollection<ImageFileInfo> Images{ get; } =
-        new ObservableCollection<ImageFileInfo>();
 }
+
