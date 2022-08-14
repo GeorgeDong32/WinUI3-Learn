@@ -9,7 +9,7 @@
 
     <Grid>
         <Grid.Resources>
-            <DataTemplate x:Key="ImageGridView_ItemTemplate">
+            <DataTemplate x:Key="ImageGridView_ItemTemplate" x:DataType="local:ImageFileInfo">
                 <Grid Height="300"
                       Width="300"
                       Margin="8">
@@ -24,21 +24,21 @@
 
                     <StackPanel Orientation="Vertical"
                                 Grid.Row="1">
-                        <TextBlock Text="ImageTitle"
+                        <TextBlock Text="{x:Bind ImageTitle}"
                                    HorizontalAlignment="Center"
                                    Style="{StaticResource SubtitleTextBlockStyle}" />
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Center">
-                            <TextBlock Text="ImageFileType"
+                            <TextBlock Text="{x:Bind ImageFileType}"
                                        HorizontalAlignment="Center"
                                        Style="{StaticResource CaptionTextBlockStyle}" />
-                            <TextBlock Text="ImageDimensions"
+                            <TextBlock Text="{x:Bind ImageDimensions}"
                                        HorizontalAlignment="Center"
                                        Style="{StaticResource CaptionTextBlockStyle}"
                                        Margin="8,0,0,0" />
                         </StackPanel>
 
-                        <RatingControl Value="3" IsReadOnly="True"/>
+                        <RatingControl Value="{x:Bind ImageRating}" IsReadOnly="True"/>
                     </StackPanel>
                 </Grid>
             </DataTemplate>
@@ -56,7 +56,8 @@
                   ItemTemplate="{StaticResource ImageGridView_ItemTemplate}"
                   ItemContainerStyle="{StaticResource ImageGridView_ItemContainerStyle}"
                   Background="AliceBlue"
-                  ItemsPanel="{StaticResource ImageGridView_ItemsPanelTemplate}">
+                  ItemsPanel="{StaticResource ImageGridView_ItemsPanelTemplate}"
+                  ContainerContentChanging="ImageGridView_ContainerContentChanging">
         </GridView>
     </Grid>
 </Window>

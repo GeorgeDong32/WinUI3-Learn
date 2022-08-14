@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
@@ -49,5 +50,33 @@ public sealed partial class MainWindow : Window
                                  file, file.DisplayName, file.DisplayType);
 
         return info;
+    }
+
+    private void ImageGridView_ContainerContentChanging(ListViewBase sender, ContainerContentChangingEventArgs args)
+    {
+        if (args.InRecycleQueue)
+        {
+            var templateRoot = args.ItemContainer.ContentTemplateRoot as Grid;
+            var image = templateRoot.FindName("ItemImage") as Image;
+            image.Source = null;
+        }
+
+        if (args.Phase == 0)
+        {
+            args.RegisterUpdateCallback(ShowImage);
+            args.Handled = true;
+        }
+    }
+
+    private async void ShowImage(ListViewBase sender, ContainerContentChangingEventArgs args)
+    {
+        if (args.Phase == 1)
+        {
+            // It's phase 1, so show this item's image.
+            var templateRoot = args.ItemContainer.ContentTemplateRoot as Grid;
+            var image = templateRoot.FindName("ItemImage") as Image;
+            var item = args.Item as ImageFileInfo;
+            image.Source = await item.GetImageThumbnailAsync();
+        }
     }
 }
