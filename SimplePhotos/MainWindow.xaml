@@ -48,7 +48,7 @@
             </Style>
         </Grid.Resources>
         <GridView x:Name="ImageGridView"
-        ItemContainerStyle="{StaticResource ImageGridView_ItemContainerStyle}">
+        ItemContainerStyle="{StaticResource ImageGridView_ItemContainerStyle}" Background="AliceBlue">
         </GridView>
     </Grid>
 
