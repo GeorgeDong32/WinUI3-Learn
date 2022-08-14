@@ -26,9 +26,10 @@ namespace FirstAPP
         public MainWindow()
         {
             this.InitializeComponent();
-            Title = "FirstAPP";
-            ExtendsContentIntoTitleBar = true;
+            Title = "GPUI Test";
+            ExtendsContentIntoTitleBar = false;
             SetTitleBar(AppTitleBar);  // this line is optional as by it is null by default
+            Activated += MainWindow_Activated;
         }
 
         /*private void myButton_Click(object sender, RoutedEventArgs e)
@@ -36,5 +37,19 @@ namespace FirstAPP
             string ButtonText = "Clicked";
             myButton.Content = ButtonText;
         }*/
+
+        private void MainWindow_Activated(object sender, WindowActivatedEventArgs args)
+        {
+            if (args.WindowActivationState == WindowActivationState.Deactivated)
+            {
+                AppTitleTextBlock.Foreground =
+                    (SolidColorBrush)App.Current.Resources["WindowCaptionForegroundDisabled"];
+            }
+            else
+            {
+                AppTitleTextBlock.Foreground =
+                    (SolidColorBrush)App.Current.Resources["WindowCaptionForeground"];
+            }
+        }
     }
 }
